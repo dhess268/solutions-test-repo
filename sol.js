@@ -3,15 +3,32 @@ const findSum = function(array) {
 };
 
 const findFrequency = function(array) {
-    let noDupes = [...new Set(array)]
+    let noDupes = [...new Set(arr)]
+    let most = null
+    let least = null
+    let leastCount = Infinity
+    let mostCount = 0
+    let currentCount = 0
+    for(let i = 0; i < noDupes.length; i++){
+        currentCount = 0
+        for(let j = 0; j < arr.length; j++){
+            if(arr[j] === noDupes[i]){
+                console.log('hi')
+                currentCount += 1
+            }
 
-    let most = noDupes.reduce((prev, curr) => {
-        return noDupes.filter(elem => elem === curr).length > prev ? curr : prev
-    }, noDupes[0])
-  
-    let least =noDupes.reduce((prev, curr) => {
-        return noDupes.filter(elem => elem === curr).length > prev ? prev : curr
-    }, noDupes[0])
+            }
+        if(currentCount > mostCount){
+            most = noDupes[i]
+            mostCount = currentCount
+        }
+        if(currentCount < leastCount){
+            least = noDupes[i]
+            leastCount = currentCount
+        }
+        
+    }
+
 
     return {
         'most': most,
